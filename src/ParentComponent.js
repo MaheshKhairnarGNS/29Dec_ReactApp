@@ -11,10 +11,12 @@
 // }
 
 import ChildComponent from "./ChildComponent";
+import Navbar from "./components/Navbar";
 
 export default function ParentComponent() {
   return (
     <>
+      <Navbar title="ParentTitle" tab="AboutParent" />
       <ChildComponent person={{ name: "Mahesh Khairnar", dob: "12-12-1989" }} />
     </>
   );

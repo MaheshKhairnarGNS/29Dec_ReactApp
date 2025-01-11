@@ -1,24 +1,23 @@
 import "./App.css";
+import Navbar from "./components/Navbar";
+//import ParentComponent from "./ParentComponent";
+import Form from "./components/Form";
+import MyClassComponent from "./components/MyClassComponent";
+import MyFunctionComponent from "./components/MyFunctionComponent";
 
-let Title = "Chapter 1";
 function App() {
   return (
     <>
-      <nav>
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
-      </nav>
+      {/* <Navbar title="ReactDemo" tab="Home"/> */}
+      {/* <Navbar title={3} tab={3} /> */}
+      {/* <Navbar title="ReactDemo" tab="Home" /> */}
 
-      <div className="mainContainer">
-        <h1>{Title}</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-          excepturi voluptatem numquam qui molestias voluptates voluptatibus
-          dolorem, exercitationem omnis fuga vero nobis rerum. Fuga, numquam
-          quia! Deserunt neque ratione quam.
-        </p>
-      </div>
+      <Navbar title="ReactDemo" tab="Home" />
+      <Form formTitle="Your Comment" lable1="User Id" />
+      <MyClassComponent />
+      <MyFunctionComponent />
+
+      {/* <ParentComponent /> */}
     </>
   );
 }
