@@ -4,9 +4,9 @@ import B from "./B";
 function A() {
   //States
 
-  const [state, setstate] = useState("initialstate");
-  const [name, setName] = useState("John");
-  const [password, setPassword] = useState("1234@pass");
+  // const [state, setstate] = useState("initialstate");
+  // const [name, setName] = useState("John");
+  // const [password, setPassword] = useState("1234@pass");
 
   const [inputValue, setInputValue] = useState("");
 

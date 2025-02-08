@@ -1,11 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
+import MyFunctionComponent from "./MyFunctionComponent";
+import MyClassComponent from "./MyClassComponent";
+import Dashboard from "../pages/Dashboard";
+import LoginPage from "../pages/LoginPage";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserProvider";
 
 export default function Navbar(props) {
+  const navigate = useNavigate();
+  const { userDetails } = useUser();
+
+  const handleLogin = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body">
         <div className="container-fluid">
+          <button
+            className="btn btn-warning"
+            type="submit"
+            onClick={handleLogin}
+          >
+            Back
+          </button>
+          <div>
+            <h6>Welcome back {userDetails.name} &nbsp;</h6>
+          </div>
+
           <a className="navbar-brand" href="/">
             {props.title}
           </a>
@@ -76,13 +100,16 @@ export default function Navbar(props) {
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button className="btn btn-outline-success" type="submit">
+              <button className="btn btn-success" type="submit">
                 Search
               </button>
             </form>
           </div>
         </div>
       </nav>
+      <Dashboard />
+      <MyFunctionComponent />
+      <MyClassComponent />
     </>
   );
 }

@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useUser } from "../context/UserProvider";
-import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [students, setStudents] = useState([]);
@@ -10,16 +10,31 @@ const LoginPage = () => {
   const { setUserDetails } = useUser();
   const navigate = useNavigate();
 
-  // Fetch student data
   useEffect(() => {
+    // axios({
+    //     // Endpoint to send files
+    //     url: "http://localhost:1337/api/students",
+    //     method: "GET",
+    //     headers: {
+    //       // Add any auth token here
+    //       authorization: "your token comes here",
+    //     },
+
+    //     // Attaching the form data
+    //     data: formData,
+    //   })
+
     axios
       .get("http://localhost:1337/api/students")
       .then((response) => {
         setStudents(response.data.data);
+        console.log("Api called Successfully");
       })
       .catch((error) => {
-        console.error("Error fetching students:", error);
+        console.error("Error fetching Api", error);
       });
+
+    // console.log("students : ", students);
   }, []);
 
   const handleLogin = (e) => {
@@ -30,50 +45,40 @@ const LoginPage = () => {
 
     if (user) {
       setUserDetails(user);
-      alert("Login Successful!");
-      navigate("/dashboard"); // Redirect after login
+      alert("Login Successfully..!");
+      //   navigate("/dashboard");
+      navigate("/dashboardscreen");
     } else {
-      alert("Invalid Credentials!");
+      alert("Invalid User Credentials....!");
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
-        <form onSubmit={handleLogin}>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Name:
-            </label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full p-2 border rounded-lg mt-1"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Email:
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 border rounded-lg mt-1"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded-lg mt-4 hover:bg-blue-600"
-          >
-            Login
-          </button>
-        </form>
-      </div>
+    <div>
+      <h1>Login Page here</h1>
+      <form onSubmit={handleLogin}>
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 };
